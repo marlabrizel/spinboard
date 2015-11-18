@@ -2,6 +2,15 @@
 
 <div class="container">
   <div class="row">
+    <div class="col-md-12 filter-buttons">
+      <h4 class="title">Filter by Read Status</h4>
+      <button class="btn btn-default btn-sm" id='all-filter'>Show All</button>
+      <button class="btn btn-default btn-sm" id='true-filter'>Read</button>
+      <button class="btn btn-default btn-sm" id='false-filter'>Unread</button>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-12 new-link">
       <h2 class="title">Submit a new link</h2>
       <%= form_for @link do |f| %>
@@ -12,11 +21,12 @@
         <%= f.submit "Submit", class: "btn btn-default new-idea-button", id: "new-link-submit"%>
       <% end %>
     </div>
+
     <div class="links">
       <% if @links %>
         <h2>My Links</h2>
         <% @links.each do |link| %>
-          <div class="link">
+          <div class="link all <%= link.read_status %>">
               <strong>Title: </strong><h3><%= link.title %></h3>  <strong>URL: </strong><h4><%= link.valid_url %></h4>
               <p>
                 <%= (link_to "Mark as read", mark_read_link_path(link), method: :put) if link.read_status == false %>
