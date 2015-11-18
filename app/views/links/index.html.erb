@@ -14,7 +14,12 @@
       <% if @links %>
         <h2>My Links</h2>
         <% @links.each do |link| %>
-          <p><strong>Title: </strong><%= link.title %>  <strong>URL: </strong><%= link.valid_url %> | <%= (link_to "Mark as read", mark_read_link_path(link), method: :put) if link.read_status == false %> <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %></p>
+          <p>
+            <strong>Title: </strong><%= link.title %>  <strong>URL: </strong><%= link.valid_url %> |
+            <%= (link_to "Mark as read", mark_read_link_path(link), method: :put) if link.read_status == false %>
+            <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %>
+            <%= button_to "Edit", edit_link_path(link), method: :get %>
+          </p>
         <% end %>
       <% end %>
     </div>
