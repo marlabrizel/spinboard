@@ -19,8 +19,8 @@ function searchLinks() {
 }
 
 function filterStatus(name) {
-  $("#" + name + "-filter").click(function(){
-    $(".link").each(function(index, link) {
+  $('#' + name + '-filter').click(function() {
+    $('.link').each(function(index, link) {
       var $link = $(link);
       if($link.hasClass(name)) {
         $link.show();
