@@ -39,7 +39,7 @@
                 <p>
                   <%= (link_to "Mark as read", mark_read_link_path(link), class: 'mark-read', method: :put) if link.read_status == false %>
                   <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %>
-                  <%= button_to "Edit", edit_link_path(link), method: :get %>
+                  <%= button_to "Edit", edit_link_path(link), method: :get %> <%= link_to link.display_slug, short_url_path(link.slug), id: "short-url-#{link.id}" %>
                 </p></li>
             </div>
           <% end %>
