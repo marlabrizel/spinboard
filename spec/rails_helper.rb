@@ -14,4 +14,12 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
+
+  def log_in(user, path)
+    visit path
+    click_link "Log In"
+    fill_in "Email address", with: user.email_address
+    fill_in "Password", with: user.password
+    click_button "Log In"
+  end
 end
