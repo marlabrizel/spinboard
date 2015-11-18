@@ -1,3 +1,5 @@
+<%= render 'layouts/search' %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 new-link">
@@ -10,16 +12,18 @@
         <%= f.submit "Submit", class: "btn btn-default new-idea-button", id: "new-link-submit"%>
       <% end %>
     </div>
-    <div class="all-links">
+    <div class="links">
       <% if @links %>
         <h2>My Links</h2>
         <% @links.each do |link| %>
-          <p>
-            <strong>Title: </strong><%= link.title %>  <strong>URL: </strong><%= link.valid_url %> |
-            <%= (link_to "Mark as read", mark_read_link_path(link), method: :put) if link.read_status == false %>
-            <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %>
-            <%= button_to "Edit", edit_link_path(link), method: :get %>
-          </p>
+          <div class="link">
+              <strong>Title: </strong><h3><%= link.title %></h3>  <strong>URL: </strong><h4><%= link.valid_url %></h4>
+              <p>
+                <%= (link_to "Mark as read", mark_read_link_path(link), method: :put) if link.read_status == false %>
+                <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %>
+                <%= button_to "Edit", edit_link_path(link), method: :get %>
+              </p>
+          </div>
         <% end %>
       <% end %>
     </div>
