@@ -50,7 +50,7 @@ function sortAlphabetically() {
       }
     });
     $.each($link, function(index, element) {
-      $link.append(element);
+      $links.append(element);
     })
     e.preventDefault();
   });
