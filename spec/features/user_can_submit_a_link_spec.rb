@@ -30,4 +30,21 @@ RSpec.describe "User can submit a link", type: :feature do
       expect(page).to have_content("Please enter a valid URL")
     end
   end
+
+  context "as another user" do
+    let!(:steve) { User.create!(email_address: "steve@example.com", password: "password", password_confirmation: "password") }
+    let!(:rachel) { User.create!(email_address: "rachel@example.com", password: "password", password_confirmation: "password") }
+    let!(:link) { Link.create!(title: "capybara world", valid_url: "https://capybaraworld.wordpress.com/", user_id: rachel.id) }
+
+    it "can only see its own links" do
+      log_in(rachel, root_path)
+
+      expect(page).to have_content "capybara world"
+      click_link "Log out"
+
+      log_in(steve, root_path)
+
+      expect(page).not_to have_content "capybara world"
+    end
+  end
 end
