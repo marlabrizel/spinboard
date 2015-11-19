@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "User can update the read status of a link" do
+RSpec.describe "User can update the read status of a link", js: true do
   context "as an authenticated user" do
     let!(:user) { User.create!(email_address: "steve@example.com", password: "password", password_confirmation: "password") }
 
@@ -11,11 +11,11 @@ RSpec.describe "User can update the read status of a link" do
 
         log_in(user, root_path)
 
-        expect(page).to have_content "Mark as read"
+        expect(page).to have_button "Mark as read"
 
-        click_link "Mark as read"
-        expect(page).to have_content "Mark as unread"
-        expect(page).not_to have_content "Mark as read"
+        click_button "Mark as read"
+        expect(page).to have_button "Mark as unread"
+        expect(page).not_to have_button "Mark as read"
       end
     end
 
@@ -26,11 +26,11 @@ RSpec.describe "User can update the read status of a link" do
 
         log_in(user, root_path)
 
-        expect(page).to have_content "Mark as unread"
+        expect(page).to have_button "Mark as unread"
 
-        click_link "Mark as unread"
-        expect(page).to have_content "Mark as read"
-        expect(page).not_to have_content "Mark as unread"
+        click_button "Mark as unread"
+        expect(page).to have_button "Mark as read"
+        expect(page).not_to have_button "Mark as unread"
       end
     end
   end

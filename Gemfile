@@ -23,6 +23,8 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'launchy'
   gem 'web-console', '~> 2.0'
 end
