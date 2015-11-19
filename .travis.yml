@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.2.2
+
+env:
+  global:
+    - BASE_URL='http://www.example.com/'
+
+script:
+  - bundle install
+  - bundle exec rake db:setup
+  - bundle exec rake
