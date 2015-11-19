@@ -68,14 +68,14 @@ function filterStatus(name) {
 
 function sortAlphabetically() {
   $('.sort-links').click(function(e) {
-    var $sort = this;
+    var sort = this;
     var $links = $('#links-list');
     var $link = $('.link',$links);
 
     $link.sort(function(a, b) {
       var keyA = $(a).find('h3').text();
       var keyB = $(b).find('h3').text();
-      if($($sort).hasClass('asc')) {
+      if($(sort).hasClass('asc')) {
           return (keyA > keyB) ? 1 : 0;
       } else {
           return (keyA < keyB) ? 1 : 0;
