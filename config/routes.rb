@@ -2,17 +2,11 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :users, only: [:new, :create, :show]
+  resources :links, only: [:index, :create, :edit, :update]
 
   namespace :api do
     namespace :v1 do
       resources :links, only: [:update]
-    end
-  end
-
-  resources :links, only: [:index, :create, :edit, :update] do
-    member do
-      put 'mark_read'
-      put 'mark_unread'
     end
   end
 

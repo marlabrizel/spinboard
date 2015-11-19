@@ -38,8 +38,8 @@
               <div class="link all <%= link.read_status ? "read" : "unread" %>" data-id="<%= link.id %>">
                   <li><strong>Title: </strong><h3><%= link.title %></h3>  <strong>URL: </strong><h4><%= link.valid_url %></h4>
                   <p>
-                    <%= button_to "Mark as read", mark_read_link_path(link), class: 'mark-read', method: :put %>
-                    <%= button_to "Mark as unread", mark_unread_link_path(link), class: 'mark-unread', method: :put %>
+                    <button type="button" class="mark-read">Mark as read</button>
+                    <button type="button" class="mark-unread">Mark as unread</button>
                     <%= button_to "Edit", edit_link_path(link), method: :get %> <%= link_to link.display_slug, short_url_path(link.slug), id: "short-url-#{link.id}" %>
                   </p></li>
               </div>

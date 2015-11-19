@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :find_link, only: [:edit, :update, :mark_read, :mark_unread]
+  before_action :find_link, only: [:edit, :update]
 
   def index
     @link = Link.new
@@ -27,16 +27,6 @@ class LinksController < ApplicationController
       flash[:danger] = "Please enter a valid URL"
       render :edit
     end
-  end
-
-  def mark_read
-    @link.update_attributes(read_status: true)
-    redirect_to links_path
-  end
-
-  def mark_unread
-    @link.update_attributes(read_status: false)
-    redirect_to links_path
   end
 
   private
