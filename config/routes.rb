@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
+  namespace :api do
+    namespace :v1 do
+      resources :links, only: [:update]
+    end
+  end
+
   resources :links, only: [:index, :create, :edit, :update] do
     member do
       put 'mark_read'

@@ -1,0 +1,19 @@
+.link.read .mark-read {
+  display: none;
+}
+
+.link.read .mark-unread {
+  display: inline;
+}
+
+.link.unread .mark-read {
+  display: inline;
+}
+
+.link.unread .mark-unread {
+  display: none;
+}
+
+.link.read h3 {
+  text-decoration: line-through;
+}

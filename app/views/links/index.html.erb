@@ -6,8 +6,8 @@
       <div class="col-md-12 filter-buttons">
         <h4 class="title">Filter by Read Status</h4>
         <button class="btn btn-default btn-sm" id='all-filter'>Show All</button>
-        <button class="btn btn-default btn-sm" id='true-filter'>Read</button>
-        <button class="btn btn-default btn-sm" id='false-filter'>Unread</button>
+        <button class="btn btn-default btn-sm" id='read-filter'>Read</button>
+        <button class="btn btn-default btn-sm" id='unread-filter'>Unread</button>
       </div>
     </div>
 
@@ -35,11 +35,11 @@
           <h2>My Links</h2>
           <ul id="links-list">
             <% @links.each do |link| %>
-              <div class="link all <%= link.read_status %>">
+              <div class="link all <%= link.read_status ? "read" : "unread" %>" data-id="<%= link.id %>">
                   <li><strong>Title: </strong><h3><%= link.title %></h3>  <strong>URL: </strong><h4><%= link.valid_url %></h4>
                   <p>
-                    <%= (link_to "Mark as read", mark_read_link_path(link), class: 'mark-read', method: :put) if link.read_status == false %>
-                    <%= "(READ)" if link.read_status == true %> <%= (link_to "Mark as unread", mark_unread_link_path(link), method: :put) if link.read_status == true %>
+                    <%= button_to "Mark as read", mark_read_link_path(link), class: 'mark-read', method: :put %>
+                    <%= button_to "Mark as unread", mark_unread_link_path(link), class: 'mark-unread', method: :put %>
                     <%= button_to "Edit", edit_link_path(link), method: :get %> <%= link_to link.display_slug, short_url_path(link.slug), id: "short-url-#{link.id}" %>
                   </p></li>
               </div>

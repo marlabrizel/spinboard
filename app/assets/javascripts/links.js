@@ -1,12 +1,44 @@
 $(document).ready(function() {
-  // listenForMarkRead();
-  // updateLink();
+  listenForRead();
+  listenForUnread();
   searchLinks();
   filterStatus("all");
-  filterStatus("true");
-  filterStatus("false");
+  filterStatus("read");
+  filterStatus("unread");
   sortAlphabetically();
 });
+
+function listenForRead() {
+  $('.mark-read').click(function(e) {
+    e.preventDefault();
+    var link = $(e.target).closest('.link')
+    updateLink(link, true);
+    link.addClass('read')
+    link.removeClass('unread')
+  });
+}
+
+function listenForUnread() {
+  $('.mark-unread').click(function(e) {
+    e.preventDefault();
+    var link = $(e.target).closest('.link')
+    updateLink(link, false);
+    link.addClass('unread')
+    link.removeClass('read')
+  });
+}
+
+function updateLink(link, status) {
+  $.ajax({
+    type: "PUT",
+    dataType: "json",
+    url: "/api/v1/links/" + link.attr('data-id') + ".json",
+    data: { link: { read_status: status } },
+    error: function() {
+      alert("Something went wrong, please try again");
+    }
+  });
+}
 
 function searchLinks() {
   $('#search').keyup(function() {
@@ -38,7 +70,7 @@ function sortAlphabetically() {
   $('.sort-links').click(function(e) {
     var $sort = this;
     var $links = $('#links-list');
-    var $link = $('li',$links);
+    var $link = $('.link',$links);
 
     $link.sort(function(a, b) {
       var keyA = $(a).find('h3').text();
@@ -49,9 +81,11 @@ function sortAlphabetically() {
           return (keyA < keyB) ? 1 : 0;
       }
     });
+
     $.each($link, function(index, element) {
       $links.append(element);
     })
+
     e.preventDefault();
   });
 }
