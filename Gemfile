@@ -14,6 +14,7 @@ gem 'rails_12factor', group: :production
 gem 'responders'
 gem 'validate_url'
 gem 'figaro'
+gem 'materialize-sass'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
